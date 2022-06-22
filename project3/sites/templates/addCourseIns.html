@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  	<title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+        }
+        form {
+            margin: 0 auto;
+            width:250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div style="background-color:blue; !important" class="jumbotron text-center bg-primary">
+            <h2> Welcome back {{username}}.</h2>
+    </div>
+
+    <form method="POST" action="{%url 'addCourseIns' %}">
+             {% csrf_token %}
+               <input type="text" name="course id" placeholder="course id"><br>
+               <input type="text" name="name" placeholder="name"><br>
+               <input type="text" name="credits" placeholder="credits"><br>
+               <input type="text" name="classroom ID" placeholder="classroom ID"><br>
+               <input type="text" name="time slot" placeholder="time slot"><br>
+               <input type="text" name="quota" placeholder="quota"><br>
+
+             <a href="addCourseIns">  <button type="submit" style="margin-left: 10px;"   class="btn btn-success">Add Course</button></a>
+    </form>
+
+    <a href="instructorHome"> <p style="text-align:center">Go to Previous Page</p></a>
+</body>
+</html>

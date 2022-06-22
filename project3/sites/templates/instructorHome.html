@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  	<title>managerHome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+        }
+        form {
+            margin: 0 auto;
+            width:250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div style="background-color:coral; !important" class="jumbotron text-center bg-primary">
+            <h3>{{username}}'s HomePage</h3>
+    </div>
+        {% if action_fail %}
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Error</h4>
+        <p>{{exception}}</p>
+    </div>
+
+
+        {% else %}
+        <div class="alert alert-success" role="alert" >
+        <h4 class="alert-heading">Successful</h4>
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="container" >
+        <div class="d-flex justify-content-around" style="display:flex;" >
+
+            <div style="margin-left : 100px;"  >
+
+                <form method="POST" action="{%url 'addCourseIns' %}">
+             {% csrf_token %}
+               <input type="text" name="course id" placeholder="course id"><br>
+               <input type="text" name="name" placeholder="name"><br>
+               <input type="text" name="credits" placeholder="credits"><br>
+               <input type="text" name="classroom ID" placeholder="classroom ID"><br>
+               <input type="text" name="time slot" placeholder="time slot"><br>
+               <input type="text" name="quota" placeholder="quota"><br>
+
+             <a href="addCourseIns">  <button type="submit" style="margin-top: 10px;"   class="btn btn-success">Add Course</button></a>
+    </form>
+                 <form method="POST" action="{%url 'updateCourseName' %}">
+             {% csrf_token %}
+               <input type="text" name="course id" placeholder="course id"style="margin-top: 10px;"><br>
+               <input type="text" name="new course name" placeholder="new course name"><br>
+
+             <a href="updateCourseName">  <button type="submit" style="margin-top: 10px;"   class="btn btn-success">Update Course Name</button></a>
+        </form>
+                 <form method="POST" action="{%url 'addPre' %}">
+             {% csrf_token %}
+               <input type="text" name="course id" placeholder="course id" style="margin-top: 10px;"><br>
+               <input type="text" name="prerequisite id" placeholder="prerequisite id"><br>
+
+             <a href="addPre">  <button type="submit" style="margin-top: 10px;"   class="btn btn-success">Add Prerequisite</button></a>
+        </form>
+
+            </div>
+            <div>
+         <form method="POST" action="{%url 'availableClassroom' %}">
+             {% csrf_token %}
+               <input type="text" name="slot" placeholder="slot"><br>
+             <a href="availableClassroom">  <button type="submit" style="margin-top: 10px;margin-right: 10px"   class="btn btn-success">Search Available Classrooms</button></a>
+        </form>
+                <form method="POST" action="{%url 'giveGrade' %}">
+             {% csrf_token %}
+               <input type="text" name="course id" placeholder="course id" style="margin-top: 10px;"><br>
+               <input type="text" name="student id" placeholder="student id"><br>
+                    <input type="text" name="grade" placeholder="grade"><br>
+
+             <a href="giveGrade">  <button type="submit" style="margin-top: 10px;"   class="btn btn-success">Give a Grade</button></a>
+        </form>
+                </div>
+
+
+            <form method="POST" action="{%url 'viewOwnStudents' %}">
+             {% csrf_token %}
+                <input type="text" name="course id" placeholder="course id"><br>
+
+             <a href="viewOwnStudents">  <button type="submit" style="margin-top: 10px;"   class="btn btn-success">View Own Students</button></a>
+        </form>
+
+
+
+            <form method="POST" action="{%url 'viewOwnCourses' %}">
+             {% csrf_token %}
+
+             <a href="viewOwnCourses">  <button type="submit" style="margin-left: 10px;"   class="btn btn-success">View Own Courses</button></a>
+        </form>
+
+
+        </div>
+    </div>
+    <a href="{%url 'index' %}"> <p style="text-align:center">Logout</p></a>
+</body>
+
+</html>
